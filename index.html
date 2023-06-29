@@ -7,9 +7,23 @@
 <link rel=icon href="data:,">
 <script src=baremark.js></script>
 <style>
-  pre:not(.markdown) {
-  margin-left:2em;
-  }
+    html {
+        line-height: 1.5;
+        padding: 0;
+    }
+    body {
+        max-width: 42em;
+        margin: auto;
+    }
+    tt, pre:not(.markdown) {
+        background: #8888;
+        padding: .0625rem .125rem;
+        border-radius: 4px;
+    }
+    pre:not(.markdown) {
+        margin: 1rem 2em;
+        padding: .5rem;
+    }
 </style>
 
 <pre class=markdown>
@@ -54,6 +68,9 @@ either.)
 
 **Hooks:** Transitions and states should be able to run custom code. Maybe this
 would be the thing to use to build up a string to highlight the search results?
+An arbitrary object (initially empty) with data should be passed along which
+the hooks can work with, and which will be returned at the end of the
+execution.
 
 
 ## Slim
@@ -143,6 +160,12 @@ metadata (maybe the index in an array of additional information).
 
 An input string of ‘abba’ would thus return true, with the additional metadata
 ‘1’.
+
+
+# Other, Similar Stuff
+
+* [XState - JavaScript State Machines and Statecharts](https://xstate.js.org/)
+* [Welcome to the world of Statecharts](https://statecharts.dev/) – Chained state machines.
 
 
 [Damerau–Levenshtein distance]: https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
