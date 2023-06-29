@@ -1,0 +1,165 @@
+<!DOCTYPE html><!--*- mode:markdown; js-indent-level:2; css-indent-offset:2 -*-->
+<!-- Copyright (c) 2023 by zrajm. License: GPLv2 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Some Thoughts on Automata – Zrajm’s page">
+<title>Some Thoughts on Automata</title>
+<link rel=icon href="data:,">
+<script src=baremark.js></script>
+<style>
+  pre:not(.markdown) {
+  margin-left:2em;
+  }
+</style>
+
+<pre class=markdown>
+
+# Some Thoughts on Automata
+
+I often find that an automaton (possibly with some modifications of the basic
+concept) is a great way of solving a problem I have. I have used automata as a
+basis for spell-checking, to implement search query languages, and creating
+text indices (among other things). – Though, so far, I haven’t been able to
+find a Javascript module (or program) for running, visualizing, and
+manipulating automata. So, here I want to gather some ideas of what I'd want
+from such a module.
+
+This is a spurred by the idea of creating unions of automata. I read somewhere
+on the internet that this is pretty efficient. Sooo… If both my text index
+*and* my search query is expressed as automata – shouldn't I be able to just
+create a union of the two to get the search result? That'd be pretty cool!
+
+There should exist a Javascript module (or package of modules) which can be
+used to build and otherwise manipulate automata. It should consist of a slim
+production module, and a larger visualizer/editor thingy.
+
+
+# Features
+
+**Match score:** An automaton execution should return true or false in the form
+of a numerical value (where 0 is false, >0 true). Each transition can be
+provided with a weight affecting the final value (default: 1) – this is
+intended for use with fuzzy matching (so that a lower match score can be
+returned when something matched fuzzily). – I think this value should be a
+multiplier? I.e. at start the score is set to `1`, and then each transition
+have a transition weight value which is used to multiplying the current match
+score.
+
+**Minimized size:** What format should be used for storing an automaton. It
+should be lightweight and simple, and allow for all the parameters needed with
+minimal redundancy. Is JSON good? (JSON seems a little bloaty with its repeated
+property names, and curly brackets and quotes.) Or should it be a special
+(binary?) format? (A binary format will lose readability, so not super good
+either.)
+
+**Hooks:** Transitions and states should be able to run custom code. Maybe this
+would be the thing to use to build up a string to highlight the search results?
+
+
+## Slim
+
+The *slim* version just do the bare minimum. It contains the base functions
+needed to build and manipulate an automaton, and to load and run it, or compile
+the ‘source code’ (in JSON format?) of an automaton into an automaton which you
+can run.
+
+* Build
+* Load/fetch automaton over internet
+* Run automaton
+
+
+## Medium
+
+The *medium* version includes the *slim* functions, but add some manipulations
+of the automaton.
+
+
+### `fuzzify(CUTOFF)`
+
+Modify an automaton to make it match fuzzily, i.e. add whatever states and
+transitions needed to match using [Damerau–Levenshtein distance]. – This allows
+approximate matches by allowing for spelling errors (missing, or extraneous or
+swapped characters). A fuzzy automaton by necessity grows in size, compare to
+its non-fuzzy ancestor. When a match is done using one (or more) fuzzy
+transitions, the match score should be lower than if only ‘hard’ transitions
+where used.
+
+Anything beyond CUTOFF number of spelling changes will not match (be careful,
+to large CUTOFF values will make your automaton explode in size).
+
+
+### Union
+
+Combine two automata into one in such a way that if either one matches the
+final automaton will match (logical OR).
+
+
+### Intersection
+
+Combine two automata into one in such a way that only if both match the final
+automaton will match (logical AND).
+
+
+
+## Big (Visualizer/Editor)
+
+The *big* version is more bloaty, and is meant for visualization and editing.
+
+* [Railroad diagram] editor/visualizer
+* Automata diagram editor/visualizer
+* *[Nondeterministic][NFA]* → *[deterministic][DFA]* conversion.
+* Convert EBNF into an automaton ([Youtube: “EBNF and Railroad Diagrams”](https://youtu.be/Pgb2O6O-Eug))
+* Input/output: [Extended Backus–Naur form]
+* Load/save
+* Regex → Automaton
+* Automaton → Regex
+
+
+# Scoring
+
+Some kind of scoring system is needed. That is, I want to be able to feed an
+input string into my automaton and get *all possible solutions* returned, and
+given a score. This way, when an automaton is expanded to allow for fuzzy
+matches we can rate the score gotten–a non-fuzzy match gets a higher score than
+a fuzzy one, allowing the non-fuzzy matches to appear first in search results.
+
+
+# As a Text Index
+
+If the final state can link to additional data, then a simple finite state
+automaton can be used as a text index. Imagine, for example, the following
+simple automaton (`(…)` = state, `▶(…)` starting state, and `((…))` = final
+state):
+
+```
+▶(a) → (b) → (b) → ((a))
+           ↘         1
+             ((c))
+               2
+```
+
+This index of two items (‘abba’ and ‘abc’) carries an additional number of
+metadata (maybe the index in an array of additional information).
+
+An input string of ‘abba’ would thus return true, with the additional metadata
+‘1’.
+
+
+[Damerau–Levenshtein distance]: https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
+[Extended Backus–Naur form]: https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
+[NFA]: https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
+[DFA]: https://en.wikipedia.org/wiki/Deterministic_finite_automaton
+[Railroad diagram]: https://en.wikipedia.org/wiki/Syntax_diagram
+
+
+</pre>
+
+<footer>© 2023 by zrajm, Uppsala, Sweden</footer>
+
+<script>
+  const e = document.querySelector('.markdown')
+  const html = baremark(e.innerHTML)
+  e.insertAdjacentHTML('afterend', html)
+  e.style.display = 'none'
+</script>
+<!--[eof]-->
