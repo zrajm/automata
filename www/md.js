@@ -1,5 +1,10 @@
 /*-*- js-indent-level: 2 -*-*/
 
+// Remove non-javascript stylesheet & load fancy one.
+const head = document.head
+head.insertAdjacentHTML('beforeend', '<link rel=stylesheet href=www/main.css>')
+head.querySelector('link[href$="nojs.css"]').remove()
+
 import(`./baremark.js`).then(() => {
   const t = document.querySelector('textarea')
   // Baremark rule for reading header style metadata & document title. There
@@ -59,11 +64,8 @@ import(`./baremark.js`).then(() => {
   const html = baremark(t.innerHTML)
   const meta = baremarkHeader()
   const date = join('—', meta.date ?? meta.created, meta.updated)
-  const head = document.head
-  head.querySelector('link[href$="nojs.css"]').remove()      // remove non-javascript styles
   head.insertAdjacentHTML('beforeend', join('\n', [
     '<meta name=viewport content=width=device-width,initial-scale=1>',
-    '<link rel=stylesheet href=www/main.css>',               // add fancy styles
     `<link rel=icon href="${meta.favicon ?? 'data:,'}" sizes=any>`,
     '<title>', join(' ', [
       tmpl(     '%', (meta.title ?? '').replace(/<br>/g, ' ')),
