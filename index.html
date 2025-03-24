@@ -110,13 +110,26 @@ automaton will match (logical AND).
 The *big* version is more bloaty, and is meant for visualization and editing.
 
 * [Railroad diagram] editor/visualizer
-* Automata diagram editor/visualizer
+* [State diagram] editor/visualizer
 * *[Nondeterministic][NFA]* → *[deterministic][DFA]* conversion.
 * Convert EBNF into an automaton ([Youtube: “EBNF and Railroad Diagrams”](https://youtu.be/Pgb2O6O-Eug))
 * Input/output: [Extended Backus–Naur form]
 * Load/save
 * Regex → Automaton
 * Automaton → Regex
+
+<figure>
+  <img src=www/state-diagram.svg width=430 height=71>
+  <figcaption>
+    A state diagram (for a Javascript array).
+  </figcaption>
+</figure>
+<figure>
+  <img src=www/railroad-diagram.png width=414 height=109>
+  <figcaption>
+    A railroad diagram (also for a Javascript array).
+  </figcaption>
+</figure>
 
 
 # Scoring
@@ -160,6 +173,7 @@ An input string of ‘abba’ would thus return true, with the additional metada
 [NFA]: https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
 [DFA]: https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 [Railroad diagram]: https://en.wikipedia.org/wiki/Syntax_diagram
+[State diagram]: https://en.wikipedia.org/wiki/State_diagram
 
 </textarea><script src=www/md.js></script>
 <!--[eof]-->

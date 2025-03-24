@@ -19,6 +19,12 @@ blockquote, pre {
   & > :first-child { margin-top: 0; }
   & > :last-child { margin-bottom: 0; }
 }
+figure {
+  text-align: center;
+  border: 1px solid #000;
+  width: fit-content;
+  padding: .5rem;
+}
 footer {
   text-align: center;
   margin: 2rem 0;
