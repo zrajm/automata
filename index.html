@@ -21,14 +21,14 @@ Favicon: www/mini-automaton.svg
 I often find that an automaton (possibly with some modifications of the basic
 concept) is a great way of solving a problem I have. I have used automata as a
 basis for spell-checking, to implement search query languages, and creating
-text indices (among other things). – Though, so far, I haven’t been able to
-find a Javascript module (or program) for running, visualizing, and
-manipulating automata. So, here I want to gather some ideas of what I'd want
-from such a module.
+text indices (among other things).—Though, so far, I haven’t been able to find
+a Javascript module (or program) for running, visualizing, and manipulating
+automata. So, here I want to gather some ideas of what I'd want from such a
+module.
 
 This is a spurred by the idea of creating unions of automata. I read somewhere
 on the internet that this is pretty efficient. Sooo… If both my text index
-*and* my search query is expressed as automata – shouldn't I be able to just
+*and* my search query is expressed as automata—shouldn't I be able to just
 create a union of the two to get the search result? That'd be pretty cool!
 
 There should exist a Javascript module (or package of modules) which can be
@@ -40,12 +40,11 @@ production module, and a larger visualizer/editor thingy.
 
 **Match score:** An automaton execution should return true or false in the form
 of a numerical value (where 0 is false, >0 true). Each transition can be
-provided with a weight affecting the final value (default: 1) – this is
-intended for use with fuzzy matching (so that a lower match score can be
-returned when something matched fuzzily). – I think this value should be a
-multiplier? I.e. at start the score is set to `1`, and then each transition
-have a transition weight value which is used to multiplying the current match
-score.
+provided with a weight affecting the final value (default: 1)—this is intended
+for use with fuzzy matching (so that a lower match score can be returned when
+something matched fuzzily).—I think this value should be a multiplier? I.e. at
+start the score is set to `1`, and then each transition have a transition
+weight value which is used to multiplying the current match score.
 
 **Minimized size:** What format should be used for storing an automaton? It
 should be lightweight and simple, and allow for all the parameters needed with
@@ -82,7 +81,7 @@ of the automaton.
 ### `fuzzify(CUTOFF)`
 
 Modify an automaton to make it match fuzzily, i.e. add whatever states and
-transitions needed to match using [Damerau–Levenshtein distance]. – This allows
+transitions needed to match using [Damerau–Levenshtein distance].—This allows
 approximate matches by allowing for spelling errors (missing, or extraneous or
 swapped characters). A fuzzy automaton by necessity grows in size, compare to
 its non-fuzzy ancestor. When a match is done using one (or more) fuzzy
@@ -211,8 +210,9 @@ webpage][JFLAP].)
 Some kind of scoring system is needed. That is, I want to be able to feed an
 input string into my automaton and get *all possible solutions* returned, and
 given a score. This way, when an automaton is expanded to allow for fuzzy
-matches we can rate the score gotten–a non-fuzzy match gets a higher score than
-a fuzzy one, allowing the non-fuzzy matches to appear first in search results.
+matches we can rate the score gotten (a non-fuzzy match gets a higher score
+than a fuzzy one) allowing the non-fuzzy matches to appear first in search
+results.
 
 
 # As a Text Index
@@ -239,8 +239,8 @@ An input string of ‘abba’ would thus return true, with the additional metada
 # Other, Similar Stuff
 
 * [XState - Javascript State Machines and Statecharts][XState]
-* [Welcome to the World of Statecharts][Statecharts] – Chained state machines.
-* [FSM Simulator] – Visualizes & creates DFAs, NFAs and ε-NFAs online.
+* [Welcome to the World of Statecharts][Statecharts]—Chained state machines.
+* [FSM Simulator]—Visualizes & creates DFAs, NFAs and ε-NFAs online.
 
 [DFA File Format]: https://student.cs.uwaterloo.ca/~cs241/dfa/
 [DFA]: https://en.wikipedia.org/wiki/Deterministic_finite_automaton
