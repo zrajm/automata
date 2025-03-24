@@ -1,0 +1,14 @@
+html { overflow: hidden }
+html:before {
+  position: absolute; right: 50%; transform: translateX(50%); z-index: 1;
+  background: #ff0; padding: .25em 1em;
+  font: 12px monospace; text-align: center;
+  content: "Enable Javascript to prettify this Markdown.";
+}
+textarea {
+  position: fixed; inset: 0;
+  border: none; resize: none;
+  color: #000;
+  padding: .5em 1em;
+}
+/*[eof]*/

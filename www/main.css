@@ -1,0 +1,27 @@
+/*-*- css-indent-offset: 2 -*-*/
+html {
+  line-height: 1.5;
+  padding: 0;
+}
+body {
+  max-width: 42em;
+  margin: auto;
+}
+tt, pre:not(.markdown) {
+  background: #8888;
+  padding: .0625rem .125rem;
+  border-radius: 4px;
+}
+pre:not(.markdown) {
+  margin: 1rem 2em;
+  padding: .5rem;
+}
+
+footer {
+  text-align: center;
+  margin: 2rem 0;
+  padding-top: 1em;
+  margin-top: 2em;
+  border: 0 solid #000; border-top-width: 2px;
+}
+/*[eof]*/
