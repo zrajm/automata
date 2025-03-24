@@ -46,7 +46,7 @@ multiplier? I.e. at start the score is set to `1`, and then each transition
 have a transition weight value which is used to multiplying the current match
 score.
 
-**Minimized size:** What format should be used for storing an automaton. It
+**Minimized size:** What format should be used for storing an automaton? It
 should be lightweight and simple, and allow for all the parameters needed with
 minimal redundancy. Is JSON good? (JSON seems a little bloaty with its repeated
 property names, and curly brackets and quotes.) Or should it be a special
@@ -132,6 +132,79 @@ The *big* version is more bloaty, and is meant for visualization and editing.
 </figure>
 
 
+# File Format
+
+The following is [DFA File Format] for automatons. (Here the characters of the
+alphabet can be listed as ranges. The first state under `.STATES` is the
+initial state, and accepting states have a trailing `!`.)
+
+```
+.ALPHABET
+a-b d-r t-z
+c s
+.STATES
+start
+seen_c
+seen_cs!
+.TRANSITIONS
+start   a b d-z  start
+start   c        seen_c
+seen_c  a-r t-z  start
+seen_c  s        seen_cs
+seen_cs a-z      seen_cs
+.INPUT
+hellocsstudents
+.EMPTY
+lyrics
+cstwofourone bstwofournone
+```
+
+This is the [FSM simulator] code for the above illustrated automaton. One of
+the rules uses underscore (`_`) instead of comma (`,`) since comma results in
+an error message.
+
+```
+#states
+s0
+s1
+s2
+s3
+#initial
+s0
+#accepting
+s3
+#alphabet
+[
+_
+value
+]
+#transitions
+s0:[>s1
+s1:value>s2
+s2:]>s3
+s2:_>s1
+```
+
+The above code is kinda verbose, and I thing it would work to start off with a
+list of initial and final states, then just list the transitions (without
+    explicitly listing the allowed states and alphabet). May be something like the
+following?
+
+```
+initial: 0
+final: 0
+0 > 1 [
+1 > 2 value
+2 > 3 ]
+2 > 1 _
+```
+
+[JFLAP] is a software for visualizing automata and converting between different
+types of them. It seems excellent, but has a (very verbose) XML-based file
+format (`.jff`) for saving automata. (See under ‘Sample files’ on [their
+webpage][JFLAP].)
+
+
 # Scoring
 
 Some kind of scoring system is needed. That is, I want to be able to feed an
@@ -164,16 +237,21 @@ An input string of ‘abba’ would thus return true, with the additional metada
 
 # Other, Similar Stuff
 
-* [XState - JavaScript State Machines and Statecharts](https://xstate.js.org/)
-* [Welcome to the world of Statecharts](https://statecharts.dev/) – Chained state machines.
+* [XState - Javascript State Machines and Statecharts][XState]
+* [Welcome to the World of Statecharts][Statecharts] – Chained state machines.
+* [FSM Simulator] – Visualizes & creates DFAs, NFAs and ε-NFAs online.
 
-
+[DFA File Format]: https://student.cs.uwaterloo.ca/~cs241/dfa/
+[DFA]: https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 [Damerau–Levenshtein distance]: https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 [Extended Backus–Naur form]: https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form
+[FSM simulator]: https://ivanzuzak.info/noam/webapps/fsm_simulator/
+[JFLAP]: https://www.jflap.org/
 [NFA]: https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
-[DFA]: https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 [Railroad diagram]: https://en.wikipedia.org/wiki/Syntax_diagram
 [State diagram]: https://en.wikipedia.org/wiki/State_diagram
+[Statecharts]: https://statecharts.dev/
+[XState]: https://xstate.js.org/
 
 </textarea><script src=www/md.js></script>
 <!--[eof]-->
