@@ -8,16 +8,17 @@ body {
   max-width: 42em;
   margin: auto;
 }
-tt, pre:not(.markdown) {
+blockquote, tt, pre {
   background: #8888;
   padding: .0625rem .125rem;
   border-radius: 4px;
 }
-pre:not(.markdown) {
+blockquote, pre {
   margin: 1rem 2em;
   padding: .5rem;
+  & > :first-child { margin-top: 0; }
+  & > :last-child { margin-bottom: 0; }
 }
-
 footer {
   text-align: center;
   margin: 2rem 0;
