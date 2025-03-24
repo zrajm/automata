@@ -62,7 +62,7 @@ import(`./baremark.js`).then(() => {
   const tmpl = (tmp, value) => value ? tmp.replace('%', value) : ''
   const join = (sep, ...x) => x.flat(Infinity).filter(x => x).join(sep)
 
-  const html = baremark(t.innerHTML)
+  const html = baremark(t.value ?? '')
   const meta = baremarkHeader()
   const date = join('—', meta.date ?? meta.created, meta.updated)
   head.insertAdjacentHTML('beforeend', join('\n', [
