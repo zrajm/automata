@@ -1,4 +1,5 @@
 /*-*- js-indent-level: 2 -*-*/
+// Copyright 2023-2025 by zrajm. Licenses: CC BY-SA (text), GPLv2 (code).
 
 // Remove non-javascript stylesheet & load fancy one.
 const head = document.head
@@ -86,14 +87,14 @@ import(`./baremark.js`).then(() => {
     + html
     + tmpl(
       '<footer>%</footer>',
-      join(' ', [
+      join('<br>', [
         tmpl(
           '© %, Uppsala, Sweden',
           join(' ', [
             tmpl('%', join('—', begYear, endYear)),
             tmpl('by %', meta.author)
           ])),
-        tmpl('(License: %)', meta.license),
+        tmpl('License: %', meta.license),
       ])
     )
 })

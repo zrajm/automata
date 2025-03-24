@@ -1,3 +1,5 @@
+/*-*- css-indent-offset: 2 -*-*/
+/* Copyright 2023-2025 by zrajm. Licenses: CC BY-SA (text), GPLv2 (code). */
 html { overflow: hidden }
 html:before {
   position: absolute; right: 50%; transform: translateX(50%); z-index: 1;
