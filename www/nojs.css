@@ -1,5 +1,6 @@
 /*-*- css-indent-offset: 2 -*-*/
 /* Copyright 2023-2025 by zrajm. Licenses: CC BY-SA (text), GPLv2 (code). */
+/* Style page w/ single textarea. Overridden if Javascript works. */
 html { overflow: hidden }
 html:before {
   position: absolute; right: 50%; transform: translateX(50%); z-index: 1;
@@ -10,7 +11,11 @@ html:before {
 textarea {
   position: fixed; inset: 0;
   border: none; resize: none;
-  color: #000;
+  color: inherit; background: inherit;
   padding: .5em 1em;
+}
+@media(prefers-color-scheme: dark) { /* Dark mode. */
+  html { color: #fff; background: #000 }
+  html:before { background: #f00 }
 }
 /*[eof]*/
