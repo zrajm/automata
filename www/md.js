@@ -1,10 +1,9 @@
 /*-*- js-indent-level: 2 -*-*/
 // Copyright 2023-2025 by zrajm. Licenses: CC BY-SA (text), GPLv2 (code).
 
-// Remove non-javascript stylesheet & load fancy one.
-const head = document.head
-head.insertAdjacentHTML('beforeend', '<link rel=stylesheet href=www/main.css>')
-head.querySelector('link[href$="nojs.css"]').remove()
+// Replace existing (non-javascript) stylesheet with fancy one.
+document.querySelector('link[rel="stylesheet"]')
+  .outerHTML = '<link rel=stylesheet href=www/main.css>'
 
 import(`./baremark.js`).then(() => {
   const t = document.querySelector('textarea')
@@ -65,7 +64,7 @@ import(`./baremark.js`).then(() => {
   const html = baremark(t.value ?? '')
   const meta = baremarkHeader()
   const date = join('—', meta.date ?? meta.created, meta.updated)
-  head.insertAdjacentHTML('beforeend', join('\n', [
+  document.head.insertAdjacentHTML('beforeend', join('\n', [
     '<meta name=viewport content=width=device-width,initial-scale=1>',
     `<link rel=icon href="${meta.favicon ?? 'data:,'}" sizes=any>`,
     '<title>', join(' ', [
