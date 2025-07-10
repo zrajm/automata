@@ -1,6 +1,5 @@
 -*- org -*-
 
-* TODO Use plain ASCII dashes and quotes
 * TODO SVG images should adapt to dark mode
   + Using 'currentColor' in SVG only works if the SVG is inline.
   + May use `<style>` inside the SVG when is included in a webpage using
@@ -9,4 +8,8 @@
     supposed to render in dark mode? (Probably not, but I haven't researched
     this.)
 * FINISHED
+** DONE Use plain ASCII dashes, quotes and ellipsis
+   CLOSED: [2025-07-10 Thu 12:11]
+   Replace “”‘’—– and … with ASCII. These are prettified by Quotecurl anyway,
+   and using plain ASCII makes source files easier to search in the terminal.
 * [eof]
