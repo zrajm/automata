@@ -3,9 +3,9 @@
 Lang: en
 Author: zrajm
 Created: 29 June 2023
-Updated: 25 March 2025
+Updated: 2025-07-10T11:09:32+02:00
 License: CC BY-NC-SA (text), GPLv2 (code).
-Favicon: www/mini-automaton.svg
+Favicon: pic/mini-automaton.svg
 
 
 # Some Thoughts on Automata
@@ -118,18 +118,21 @@ The *big* version is more bloaty, and is meant for visualization and editing.
 * Regex → Automaton
 * Automaton → Regex
 
-<figure>
-  <img src=www/state-diagram.svg width=430.5 height=71.3>
-  <figcaption>
-    A state diagram (for a Javascript array).
-  </figcaption>
-</figure>
-<figure>
-  <img src=www/railroad-diagram.svg width=354 height=102>
-  <figcaption>
-    A railroad diagram (for the same Javascript array).
-  </figcaption>
-</figure>
+<style>.dG9o1Y img { box-sizing: content-box; padding: 1em; background: #fff }</style>
+<div class=dG9o1Y>
+  <figure>
+    <img src=pic/state-diagram.svg width=430.5 height=71.3>
+    <figcaption>
+      A state diagram (for a Javascript array).
+    </figcaption>
+  </figure>
+  <figure>
+    <img src=pic/railroad-diagram.svg width=354 height=102>
+    <figcaption>
+      A railroad diagram (for the same Javascript array).
+    </figcaption>
+  </figure>
+</div>
 
 
 # File Format
@@ -251,7 +254,7 @@ Hinze, Ralf. (2019). ”[Self-certifying Railroad Diagrams: Or: How to Teach
 Nondeterministic Finite Automata][Hinze \(2019\)]”. In *Mathematics of Program
 Construction: 13th International Conference, MPC 2019, Porto, Portugal, October
 7–9, 2019, Proceedings 13* (pp. 103-137). Springer International Publishing.
-[https://doi.org/10.1007/978-3-030-33636-3_5](https://doi.org/10.1007/978-3-030-33636-3_5)—Lots
+[doi.org/10.1007/978-3-030-33636-3_5](https://doi.org/10.1007/978-3-030-33636-3_5)—Lots
 of interesting visualizations using (especially nice looking) railroad
 diagrams.
 
@@ -270,5 +273,5 @@ diagrams.
 [Statecharts]: https://statecharts.dev/
 [XState]: https://xstate.js.org/
 
-</textarea><script src=www/md.js></script>
+</textarea><script type=module src=www/main.js></script>
 <!--[eof]-->
