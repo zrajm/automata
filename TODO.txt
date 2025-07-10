@@ -1,0 +1,12 @@
+-*- org -*-
+
+* TODO Use plain ASCII dashes and quotes
+* TODO SVG images should adapt to dark mode
+  + Using 'currentColor' in SVG only works if the SVG is inline.
+  + May use `<style>` inside the SVG when is included in a webpage using
+    `<img>`, however, this is not compatible with the dark mode override
+    toggler---unless, there's a way using Javascript to tell an image that it's
+    supposed to render in dark mode? (Probably not, but I haven't researched
+    this.)
+* FINISHED
+* [eof]
